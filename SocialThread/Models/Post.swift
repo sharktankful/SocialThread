@@ -11,7 +11,7 @@ import UIKit
 struct Post: Identifiable {
     var id: UUID = UUID()
     var message: String?
-    var image: UIImage?
+    var image: UIImage? = nil
     var likes: Int = 0
     var dislikes: Int = 0
 }

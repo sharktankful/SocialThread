@@ -11,6 +11,6 @@ import UIKit
 
 struct User {
     var name: String
-    var avatarImage: UIImage?
+    var avatarImage: UIImage? = nil
     var posts: [Post] = []
 }
