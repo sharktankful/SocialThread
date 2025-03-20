@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
     // CURRENT USER
     @State private var user: User = User(name: "Alec Smith")
     
     @State private var message: String = ""
+    @State private var photoPickerItem: PhotosPickerItem?
     
     var body: some View {
         
@@ -32,16 +34,54 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width:30, height: 30)
-                        .padding(17)
-                        .background(Circle()
-                            .fill(Color.red))
+                    // SHOWS PROFILE IMAGE
+                    PhotosPicker(selection: $photoPickerItem, matching: .images) {
+                        
+                        ZStack {
+                            // USE USER PROFILE IMAGE IF NOT NIL. OTHERWISE, USE DEFAULT IMAGE
+                            if let avatarImage = user.avatarImage {
+                                Image(uiImage: avatarImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                
+                            }
+                            else {
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .padding(16)
+                                    .background(Color.red)
+                            }
+                        }
+                        .frame(width:67, height: 67)
+                        .clipShape(Circle())
+                        
+                        
+                    }
+                    
                 }
                 .padding(.horizontal)
                 .foregroundStyle(.white)
+                .onChange(of: photoPickerItem) {
+                    // SETS NEW PHOTO SELECTED AS PROFILE IMAGE
+                    Task {
+                        if let pickedImage = photoPickerItem {
+                            do {
+                                if let data = try await pickedImage.loadTransferable(type: Data.self) {
+                                    if let image = UIImage(data: data) {
+                                        user.avatarImage = image
+                                    }
+                                }
+                            }
+                            catch {
+                                print("Error thrown: \(error)")
+                            }
+                            
+                        }
+                        
+                        photoPickerItem = nil
+                    }
+                }
                 
                 
                 // SHOWS LISTS OF POSTS
@@ -51,7 +91,7 @@ struct ContentView: View {
                         // ACTUAL POST LIST
                         ForEach(user.posts) { post in
                             
-                            NewPostView(name: user.name, message: post.message ?? "")
+                            NewPostView(name: user.name, message: post.message ?? "", profileImage: user.avatarImage)
                 
                         }
                     }
