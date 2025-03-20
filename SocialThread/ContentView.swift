@@ -14,12 +14,35 @@ struct ContentView: View {
     @State private var message: String = ""
     
     var body: some View {
+        
         ZStack {
             // BACKGROUND
             LinearGradient(colors: [Color.deepPurple, Color.blushPink], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
+            
+            
             VStack {
+                
+                // PROFILE HEADER
+                HStack {
+                    Text(user.name)
+                        .font(.largeTitle)
+                        .bold()
+                    
+                    Spacer()
+                    
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width:30, height: 30)
+                        .padding(17)
+                        .background(Circle()
+                            .fill(Color.red))
+                }
+                .padding(.horizontal)
+                .foregroundStyle(.white)
+                
                 
                 // SHOWS LISTS OF POSTS
                 ScrollView {
