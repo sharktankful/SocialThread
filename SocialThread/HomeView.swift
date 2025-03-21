@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct ContentView: View {
+struct HomeView: View {
     // CURRENT USER
     @State private var user: User = User(name: "Alec Smith")
     
@@ -118,5 +118,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
