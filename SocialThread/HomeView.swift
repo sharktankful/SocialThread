@@ -12,7 +12,6 @@ struct HomeView: View {
     // CURRENT USER
     @State private var user: User = User(name: "Alec Smith")
     
-    
     @State private var photoPickerItem: PhotosPickerItem?
     @State private var isCoverPresented: Bool = false
     
@@ -93,7 +92,7 @@ struct HomeView: View {
                         // ACTUAL POST LIST
                         ForEach(user.posts) { post in
                             
-                            PostView(name: user.name, message: post.message ?? "", profileImage: user.avatarImage)
+                            PostView(name: user.name, profileImage: user.avatarImage, message: post.message ?? "", postImage: post.image ?? nil)
                 
                         }
                     }
@@ -123,7 +122,7 @@ struct HomeView: View {
             .padding()
             .fullScreenCover(isPresented: $isCoverPresented) {
                 
-                NewPostView(isCoverPresented: $isCoverPresented,user: $user, profileImage: user.avatarImage)
+                NewPostView(isCoverPresented: $isCoverPresented, user: $user, profileImage: user.avatarImage)
                 
             }
         }

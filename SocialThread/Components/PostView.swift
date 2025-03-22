@@ -9,8 +9,9 @@ import SwiftUI
 
 struct PostView: View {
     var name: String
-    var message: String
     var profileImage: UIImage?
+    var message: String
+    var postImage: UIImage?
     
     var body: some View {
         ZStack {
@@ -51,12 +52,16 @@ struct PostView: View {
                         .bold()
                     Text(message)
                     
-                    //IMAGE
-                    Image("food")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
-                        .frame(maxHeight: 300)
+                    // IMAGE IS INCLUDED IN POST
+                    // (NOT NIL)
+                    if let postImage = postImage {
+                        Image(uiImage: postImage)
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                            .frame(maxHeight: 300)
+                    }
+                    
                     
                 }
                 Spacer()
@@ -69,5 +74,5 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(name: "Alec", message: "This is my post here! I'm really excited to see how this post will turn out!! :)", profileImage: nil)
+    PostView(name: "Alec", profileImage: nil, message: "This is my post here! I'm really excited to see how this post will turn out!! :)")
 }

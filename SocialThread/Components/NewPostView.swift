@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewPostView: View {
     @Binding var isCoverPresented: Bool
     @Binding var user: User
     
     @State var message: String = ""
+    @State var photoPickerItem: PhotosPickerItem?
+    @State var postImage: UIImage?
     
     var profileImage: UIImage?
     
@@ -83,44 +86,96 @@ struct NewPostView: View {
                                     .frame(height: 22)
                             }
                             
-                            
                             TextField("", text: $message)
                                 .foregroundStyle(.white)
                                 .onSubmit {
-                                    let post = Post(message: message)
-                                    user.posts.append(post)
+                                    // INCLUDES PHOTO IN POST CREATION
+                                    if let postImage = postImage {
+                                        let post = Post(message: message, image: postImage)
+                                        user.posts.append(post)
+                                    }
+                                    // CREATES POST WITH JUST MESSAGE IF NO IMAGE
+                                    else {
+                                        let post = Post(message: message)
+                                        user.posts.append(post)
+                                    }
+                                    
+                                    // CLEARS CURRENT MESSAGE AND PHOTO PICKED
                                     message = ""
                                     
-                                    //ONCE SUBMITTED, APP WILL GO BACK TO HOME VIEW
+                                    // ONCE SUBMITTED, APP WILL GO BACK TO HOME VIEW
                                     isCoverPresented = false
                                 }
                             
                         }
                         
-                        VStack {
+                        if let selectedPhoto = postImage {
+                            // IMAGE POST PREVIEW
+                            ZStack(alignment: .topTrailing) {
+                                Image(uiImage: selectedPhoto)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                                    .frame(maxHeight: 200)
+                                
+                                // REMOVES IMAGE SELECTED FOR POST
+                                Button {
+                                    withAnimation {
+                                        postImage = nil
+                                    }
+                                   
+                                } label: {
+                                    Text("X")
+                                        .padding(10)
+                                        .background(Color.black.opacity(0.5))
+                                        .foregroundStyle(.white)
+                                        .clipShape(Circle())
+                                        .padding(5)
+                                }
+                            }
+                            
+                        }
+                         
+                        // SELECT/UPLOAD PHOTO FOR POST
+                        PhotosPicker(selection: $photoPickerItem) {
                             // ICON TO EVENTUALLY UPLOAD THE IMAGE
                             Image(systemName: "photo.badge.plus")
                                 .font(.system(size: 25))
                                 .foregroundStyle(.gray)
                                 .padding(.top, 7)
                         }
+                        .onChange(of: photoPickerItem) {
+                            Task {
+                                // INCLUDES PHOTO IN POST CREATION
+                                if let selectedPhoto = photoPickerItem {
+                                    do {
+                                        if let data = try await selectedPhoto.loadTransferable(type: Data.self) {
+                                            
+                                            postImage = UIImage(data: data)
+                                        }
+                                    }
+                                    catch {
+                                        print("Error thrown: \(error)")
+                                    }
+                                }
+                                
+                                // SETS SELECTED PHOTO BACK TO NIL
+                                photoPickerItem = nil
+                            }
+                        }
+                        
+                        
+                        
                     }
                     
                     
                     Spacer()
                 }
                 
-                
-               
-                
-                
                 Spacer()
                 
             }
             .padding()
-            
-            
-            
             
         }
        
