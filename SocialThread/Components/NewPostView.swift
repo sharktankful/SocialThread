@@ -24,7 +24,7 @@ struct NewPostView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {
-                HStack(alignment: .center) {
+                HStack(alignment: .top) {
                     // RETURN TO HOMEVIEW
                     Button {
                         isCoverPresented.toggle()
@@ -45,7 +45,9 @@ struct NewPostView: View {
                     Spacer()
                 }
                 
-                HStack {
+                
+                // POST CREATION FIELD
+                HStack(alignment: .top, spacing: 10) {
                     ZStack {
                         // USE USER PROFILE IMAGE IF NOT NIL. OTHERWISE, USE DEFAULT IMAGE
                         if let avatarImage = profileImage {
@@ -64,24 +66,51 @@ struct NewPostView: View {
                     }
                     .frame(width:40, height: 40)
                     .clipShape(Circle())
-                    Spacer()
                     
                     
-                    // ENTER/CREATE NEW POST
-                    TextField("Enter Post", text: $message)
-                        .textFieldStyle(.plain)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius:20).opacity(0.3))
-                        .foregroundStyle(.white)
-                        .onSubmit {
-                            let post = Post(message: message)
-                            user.posts.append(post)
-                            message = ""
+                    
+                    VStack(alignment: .leading) {
+                        Text(user.name)
+                            .foregroundStyle(.white)
+                            .fontWeight(.semibold)
+                        
+                        // ENTER/CREATE NEW POST
+                        //(HARD CODE FRAME HEIGHT TO MATCH TEXTFIELD HEIGHT)
+                        ZStack(alignment: .leading) {
+                            if message.isEmpty {
+                                Text("Enter New Post...")
+                                    .foregroundStyle(.gray)
+                                    .frame(height: 22)
+                            }
                             
-                            //ONCE SUBMITTED, APP WILL GO BACK TO HOME VIEW
-                            isCoverPresented = false
+                            
+                            TextField("", text: $message)
+                                .foregroundStyle(.white)
+                                .onSubmit {
+                                    let post = Post(message: message)
+                                    user.posts.append(post)
+                                    message = ""
+                                    
+                                    //ONCE SUBMITTED, APP WILL GO BACK TO HOME VIEW
+                                    isCoverPresented = false
+                                }
+                            
                         }
+                        
+                        VStack {
+                            // ICON TO EVENTUALLY UPLOAD THE IMAGE
+                            Image(systemName: "photo.badge.plus")
+                                .font(.system(size: 25))
+                                .foregroundStyle(.gray)
+                                .padding(.top, 7)
+                        }
+                    }
+                    
+                    
+                    Spacer()
                 }
+                
+                
                
                 
                 
