@@ -12,8 +12,9 @@ struct HomeView: View {
     // CURRENT USER
     @State private var user: User = User(name: "Alec Smith")
     
-    @State private var message: String = ""
+    
     @State private var photoPickerItem: PhotosPickerItem?
+    @State private var isCoverPresented: Bool = false
     
     var body: some View {
         
@@ -51,6 +52,7 @@ struct HomeView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .padding(16)
                                     .background(Color.red)
+                                    .foregroundStyle(.black)
                             }
                         }
                         .frame(width:67, height: 67)
@@ -91,7 +93,7 @@ struct HomeView: View {
                         // ACTUAL POST LIST
                         ForEach(user.posts) { post in
                             
-                            NewPostView(name: user.name, message: post.message ?? "", profileImage: user.avatarImage)
+                            PostView(name: user.name, message: post.message ?? "", profileImage: user.avatarImage)
                 
                         }
                     }
@@ -99,21 +101,33 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                // ENTER/CREATE NEW POST
-                TextField("Enter Post", text: $message)
-                    .textFieldStyle(.plain)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius:20).opacity(0.3))
-                    .foregroundStyle(.white)
-                    .onSubmit {
-                        let post = Post(message: message)
-                        user.posts.append(post)
-                        message = ""
-                    }
                 
+                // BUTTON TO BRING UP POST CREATION SHEET
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        isCoverPresented = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 50))
+                            .bold()
+                            .padding()
+                            .foregroundStyle(.white.opacity(0.8))
+                            .background(Color.deepPurple
+                                .opacity(0.4))
+                            .clipShape(Circle())
+                    }
+                }
             }
             .padding()
+            .fullScreenCover(isPresented: $isCoverPresented) {
+                
+                NewPostView(isCoverPresented: $isCoverPresented,user: $user, profileImage: user.avatarImage)
+                
+            }
         }
+        
     }
 }
 

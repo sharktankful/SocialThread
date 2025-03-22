@@ -2,24 +2,50 @@
 //  NewPostView.swift
 //  SocialThread
 //
-//  Created by Alec Smith on 3/19/25.
+//  Created by Alec Smith on 3/21/25.
 //
 
 import SwiftUI
 
 struct NewPostView: View {
-    var name: String
-    var message: String
+    @Binding var isCoverPresented: Bool
+    @Binding var user: User
+    
+    @State var message: String = ""
+    
     var profileImage: UIImage?
+    
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .opacity(0.5)
-            HStack (spacing: 15) {
-                // PERSON ICON
-                VStack {
+            
+            // BACKGROUND
+            LinearGradient(colors: [Color.deepPurple, Color.blushPink], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            
+            VStack(alignment: .center) {
+                HStack(alignment: .center) {
+                    // RETURN TO HOMEVIEW
+                    Button {
+                        isCoverPresented.toggle()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundStyle(.white)
+                    }
                     
+                    Spacer()
+                    
+                    // PAGE TITLE
+                    Text("New Post")
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundStyle(.white)
+                    
+                    Spacer()
+                    Spacer()
+                }
+                
+                HStack {
                     ZStack {
                         // USE USER PROFILE IMAGE IF NOT NIL. OTHERWISE, USE DEFAULT IMAGE
                         if let avatarImage = profileImage {
@@ -38,27 +64,41 @@ struct NewPostView: View {
                     }
                     .frame(width:40, height: 40)
                     .clipShape(Circle())
+                    Spacer()
                     
-                        Spacer()
+                    
+                    // ENTER/CREATE NEW POST
+                    TextField("Enter Post", text: $message)
+                        .textFieldStyle(.plain)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius:20).opacity(0.3))
+                        .foregroundStyle(.white)
+                        .onSubmit {
+                            let post = Post(message: message)
+                            user.posts.append(post)
+                            message = ""
+                            
+                            //ONCE SUBMITTED, APP WILL GO BACK TO HOME VIEW
+                            isCoverPresented = false
+                        }
                 }
-                    
+               
                 
                 
-                // PERSON NAME/POST MESSAGE
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(name)
-                        .bold()
-                    Text(message)
-                }
                 Spacer()
+                
             }
-            .foregroundStyle(.white)
             .padding()
             
+            
+            
+            
         }
+       
+
     }
 }
 
 #Preview {
-    NewPostView(name: "Alec", message: "This is my post here! I'm really excited to see how this post will turn out!! :)", profileImage: nil)
+    NewPostView(isCoverPresented: .constant(true), user: .constant(User(name: "Alec Smith")))
 }
