@@ -45,11 +45,19 @@ struct PostView: View {
                     
                 
                 
-                // PERSON NAME/POST MESSAGE
-                VStack(alignment: .leading, spacing: 5) {
+                // PERSON NAME/POST MESSAGE/IMAGE
+                VStack(alignment: .leading, spacing: 8) {
                     Text(name)
                         .bold()
                     Text(message)
+                    
+                    //IMAGE
+                    Image("food")
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 7))
+                        .frame(maxHeight: 300)
+                    
                 }
                 Spacer()
             }
