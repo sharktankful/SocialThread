@@ -14,6 +14,11 @@ struct TabBarView: View {
                 .tabItem {
                     Image(systemName: "house.fill")
                 }
+            
+            AboutView()
+                .tabItem {
+                    Image(systemName: "person.circle.fill")
+                }
         }
         .accentColor(.white)
     }
