@@ -92,7 +92,7 @@ struct HomeView: View {
                         // ACTUAL POST LIST
                         ForEach(user.posts) { post in
                             
-                            PostView(name: user.name, profileImage: user.avatarImage, message: post.message ?? "", postImage: post.image ?? nil)
+                            PostView(name: user.name, profileImage: user.avatarImage, message: post.message ?? "", postImage: post.image ?? nil, likes: post.likes)
                 
                         }
                     }

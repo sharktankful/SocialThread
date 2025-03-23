@@ -13,6 +13,9 @@ struct PostView: View {
     var message: String
     var postImage: UIImage?
     
+    @State var likes: Int
+    @State var heartTap: Bool = false
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
@@ -62,6 +65,28 @@ struct PostView: View {
                             .frame(maxHeight: 300)
                     }
                     
+                    // POST STATS
+                    HStack {
+                        // LIKES
+                        HStack {
+                            Image(systemName: heartTap == false ? "heart" : "heart.fill")
+                                .foregroundStyle(heartTap == false ? .white : .red)
+                                .onTapGesture {
+                                    heartTap.toggle()
+        
+                                    if heartTap == true {
+                                        likes += 1
+                                    }
+                                    else {
+                                        likes -= 1
+                                    }
+                                }
+                            Text(String(likes))
+                        }
+                       
+                    }
+                    .padding(.top, 10)
+                    
                     
                 }
                 Spacer()
@@ -74,5 +99,5 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(name: "Alec", profileImage: nil, message: "This is my post here! I'm really excited to see how this post will turn out!! :)")
+    PostView(name: "Alec", profileImage: nil, message: "This is my post here! I'm really excited to see how this post will turn out!! :)", likes: 0)
 }
