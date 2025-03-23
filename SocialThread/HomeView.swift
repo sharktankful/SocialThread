@@ -23,7 +23,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             
-            
+            // LIST OF ALL POSTS
             VStack {
                 
                 // PROFILE HEADER
@@ -101,7 +101,15 @@ struct HomeView: View {
                 Spacer()
                 
                 
-                // BUTTON TO BRING UP POST CREATION SHEET
+                
+            }
+            .padding()
+            
+            
+            // BUTTON TO BRING UP POST CREATION SHEET
+            VStack {
+                Spacer()
+                
                 HStack {
                     Spacer()
                     
@@ -112,14 +120,13 @@ struct HomeView: View {
                             .font(.system(size: 50))
                             .bold()
                             .padding()
-                            .foregroundStyle(.white.opacity(0.8))
-                            .background(Color.deepPurple
-                                .opacity(0.4))
+                            .foregroundStyle(.white)
+                            .background(Color.deepPurple)
                             .clipShape(Circle())
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
             .fullScreenCover(isPresented: $isCoverPresented) {
                 
                 NewPostView(isCoverPresented: $isCoverPresented, user: $user, profileImage: user.avatarImage)
