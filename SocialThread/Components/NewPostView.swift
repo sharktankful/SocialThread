@@ -120,7 +120,7 @@ struct NewPostView: View {
                                 
                                 // REMOVES IMAGE SELECTED FOR POST
                                 Button {
-                                    withAnimation {
+                                    withAnimation(.easeOut(duration: 0.3)) {
                                         postImage = nil
                                     }
                                    
