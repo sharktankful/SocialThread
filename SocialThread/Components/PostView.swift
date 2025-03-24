@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct PostView: View {
-    var name: String
-    var profileImage: UIImage?
-    var message: String
-    var postImage: UIImage?
+    @EnvironmentObject private var profileModel: ProfileModel
     
-    @State var likes: Int
+    @State var post: Post
     @State var heartTap: Bool = false
     
     var body: some View {
@@ -23,26 +20,7 @@ struct PostView: View {
             HStack (spacing: 15) {
                 // PERSON ICON
                 VStack {
-                    
-                    ZStack {
-                        // USE USER PROFILE IMAGE IF NOT NIL. OTHERWISE, USE DEFAULT IMAGE
-                        if let avatarImage = profileImage {
-                            Image(uiImage: avatarImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                            
-                        }
-                        else {
-                            Image(systemName: "person.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .padding(10)
-                                .background(Color.red)
-                                .foregroundStyle(.black)
-                        }
-                    }
-                    .frame(width:40, height: 40)
-                    .clipShape(Circle())
+                    ProfileImageView(padding: 10, frame: 40)
                     
                         Spacer()
                 }
@@ -51,13 +29,13 @@ struct PostView: View {
                 
                 // PERSON NAME/POST MESSAGE/IMAGE
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(name)
+                    Text(profileModel.user.name)
                         .bold()
-                    Text(message)
+                    Text(post.message ?? "")
                     
                     // IMAGE IS INCLUDED IN POST
                     // (NOT NIL)
-                    if let postImage = postImage {
+                    if let postImage = post.image {
                         Image(uiImage: postImage)
                             .resizable()
                             .scaledToFit()
@@ -75,13 +53,13 @@ struct PostView: View {
                                     heartTap.toggle()
         
                                     if heartTap == true {
-                                        likes += 1
+                                        post.likes += 1
                                     }
                                     else {
-                                        likes -= 1
+                                        post.likes -= 1
                                     }
                                 }
-                            Text(String(likes))
+                            Text(String(post.likes))
                         }
                        
                     }
@@ -99,5 +77,6 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(name: "Alec", profileImage: nil, message: "This is my post here! I'm really excited to see how this post will turn out!! :)", likes: 0)
+    PostView(post: Post(id: UUID(), message: "Testing", image: nil, likes: 0))
+        .environmentObject(ProfileModel())
 }

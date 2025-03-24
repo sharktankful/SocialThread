@@ -9,10 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct HomeView: View {
-    // CURRENT USER
-    @State private var user: User = User(name: "Alec Smith")
-    
-    @State private var photoPickerItem: PhotosPickerItem?
+    @EnvironmentObject private var profileModel: ProfileModel
     @State private var isCoverPresented: Bool = false
     
     var body: some View {
@@ -28,60 +25,25 @@ struct HomeView: View {
                 
                 // PROFILE HEADER
                 HStack {
-                    Text(user.name)
+                    Text(profileModel.user.name)
                         .font(.largeTitle)
                         .bold()
                     
                     Spacer()
                     
                     // SHOWS PROFILE IMAGE
-                    PhotosPicker(selection: $photoPickerItem, matching: .images) {
+                    PhotosPicker(selection: $profileModel.photoPickerItem, matching: .images) {
                         
-                        ZStack {
-                            // USE USER PROFILE IMAGE IF NOT NIL. OTHERWISE, USE DEFAULT IMAGE
-                            if let avatarImage = user.avatarImage {
-                                Image(uiImage: avatarImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                
-                            }
-                            else {
-                                Image(systemName: "person.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .padding(16)
-                                    .background(Color.red)
-                                    .foregroundStyle(.black)
-                            }
-                        }
-                        .frame(width:67, height: 67)
-                        .clipShape(Circle())
-                        
+                        ProfileImageView(padding: 16, frame: 67)
                         
                     }
                     
                 }
                 .padding(.horizontal)
                 .foregroundStyle(.white)
-                .onChange(of: photoPickerItem) {
+                .onChange(of: profileModel.photoPickerItem) {
                     // SETS NEW PHOTO SELECTED AS PROFILE IMAGE
-                    Task {
-                        if let pickedImage = photoPickerItem {
-                            do {
-                                if let data = try await pickedImage.loadTransferable(type: Data.self) {
-                                    if let image = UIImage(data: data) {
-                                        user.avatarImage = image
-                                    }
-                                }
-                            }
-                            catch {
-                                print("Error thrown: \(error)")
-                            }
-                            
-                        }
-                        
-                        photoPickerItem = nil
-                    }
+                    profileModel.userPhotoChange()
                 }
                 
                 
@@ -90,17 +52,13 @@ struct HomeView: View {
                     VStack(spacing: 20) {
                         
                         // ACTUAL POST LIST
-                        ForEach(user.posts) { post in
-                            
-                            PostView(name: user.name, profileImage: user.avatarImage, message: post.message ?? "", postImage: post.image ?? nil, likes: post.likes)
-                
+                        ForEach(profileModel.user.posts) { post in
+                            PostView(post: post)
                         }
                     }
                 }
                 
                 Spacer()
-                
-                
                 
             }
             .padding()
@@ -129,7 +87,7 @@ struct HomeView: View {
             .padding(.horizontal)
             .fullScreenCover(isPresented: $isCoverPresented) {
                 
-                NewPostView(isCoverPresented: $isCoverPresented, user: $user, profileImage: user.avatarImage)
+                NewPostView(isCoverPresented: $isCoverPresented)
                 
             }
         }
@@ -139,4 +97,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(ProfileModel())
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SocialThreadApp: App {
+    @StateObject var profileModel = ProfileModel()
+    
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .environmentObject(profileModel)
         }
     }
 }
