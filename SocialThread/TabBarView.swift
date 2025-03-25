@@ -15,7 +15,7 @@ struct TabBarView: View {
                     Image(systemName: "house.fill")
                 }
             
-            AboutView()
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person.circle.fill")
                 }
@@ -26,4 +26,5 @@ struct TabBarView: View {
 
 #Preview {
     TabBarView()
+        .environmentObject(ProfileModel())
 }

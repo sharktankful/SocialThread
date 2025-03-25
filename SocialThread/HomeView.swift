@@ -25,38 +25,16 @@ struct HomeView: View {
                 
                 // PROFILE HEADER
                 HStack {
-                    Text(profileModel.user.name)
-                        .font(.largeTitle)
+                    Text("Social App 😉")
+                        .font(.title)
                         .bold()
-                    
+                        .foregroundStyle(.white)
                     Spacer()
-                    
-                    // SHOWS PROFILE IMAGE
-                    PhotosPicker(selection: $profileModel.photoPickerItem, matching: .images) {
-                        
-                        ProfileImageView(padding: 16, frame: 67)
-                        
-                    }
-                    
-                }
-                .padding(.horizontal)
-                .foregroundStyle(.white)
-                .onChange(of: profileModel.photoPickerItem) {
-                    // SETS NEW PHOTO SELECTED AS PROFILE IMAGE
-                    profileModel.userPhotoChange()
                 }
                 
                 
                 // SHOWS LISTS OF POSTS
-                ScrollView {
-                    VStack(spacing: 20) {
-                        
-                        // ACTUAL POST LIST
-                        ForEach(profileModel.user.posts) { post in
-                            PostView(post: post)
-                        }
-                    }
-                }
+                PostListView()
                 
                 Spacer()
                 
@@ -83,6 +61,7 @@ struct HomeView: View {
                             .clipShape(Circle())
                     }
                 }
+                .padding(.bottom, 30)
             }
             .padding(.horizontal)
             .fullScreenCover(isPresented: $isCoverPresented) {
