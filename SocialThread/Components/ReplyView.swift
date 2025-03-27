@@ -1,16 +1,16 @@
 //
-//  NewPostView.swift
+//  ReplyView.swift
 //  SocialThread
 //
-//  Created by Alec Smith on 3/19/25.
+//  Created by Alec Smith on 3/26/25.
 //
 
 import SwiftUI
 
-struct PostView: View {
+struct ReplyView: View {
     @EnvironmentObject private var profileModel: ProfileModel
     
-    @Binding var post: Post
+    @State var reply: Reply
     @State var heartTap: Bool = false
     
     var body: some View {
@@ -32,32 +32,18 @@ struct PostView: View {
                     Text(profileModel.user.name)
                         .bold()
                     
-                    // DRILLS INTO COMMENT VIEW
-                    NavigationLink {
-                        CommentView(post: $post)
-                    } label: {
-                        HStack {
-                            Text(post.message ?? "")
-                            Spacer()
-                        }
-                        
-                    }
-
-                   
+                    Text(reply.message ?? "")
+                    
                     
                     // IMAGE IS INCLUDED IN POST
                     // (NOT NIL)
-                    if let postImage = post.image {
+                    if let postImage = reply.image {
                         Image(uiImage: postImage)
                             .resizable()
                             .scaledToFit()
                             .clipShape(RoundedRectangle(cornerRadius: 7))
                             .frame(maxHeight: 300)
                     }
-                    
-                    // POST STATS
-                    PostOptionView(post: post)
-                    .padding(.top, 10)
                     
                     
                 }
@@ -72,6 +58,6 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(post: .constant(Post(id: UUID(), message: "Testing", image: nil, likes: 0)))
+    ReplyView(reply: Reply())
         .environmentObject(ProfileModel())
 }

@@ -10,15 +10,19 @@ import SwiftUI
 struct TabBarView: View {
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                }
+            NavigationStack {
+                HomeView()
+            }
+            .tabItem {
+                Image(systemName: "house.fill")
+            }
             
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.circle.fill")
-                }
+            NavigationStack {
+                ProfileView()
+            }
+            .tabItem {
+                Image(systemName: "person.circle.fill")
+            }
         }
         .accentColor(.white)
     }

@@ -34,7 +34,10 @@ struct HomeView: View {
                 
                 
                 // SHOWS LISTS OF POSTS
-                PostListView()
+                ScrollView {
+                    PostListView()
+                }
+                
                 
                 Spacer()
                 

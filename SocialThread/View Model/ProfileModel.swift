@@ -60,6 +60,7 @@ class ProfileModel: ObservableObject {
         postImage = nil
     }
     
+    
     // UPLOADS IMAGE TO POST
     func imageUpload() {
         Task {

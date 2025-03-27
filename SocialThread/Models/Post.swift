@@ -13,4 +13,12 @@ struct Post: Identifiable {
     var message: String?
     var image: UIImage? = nil
     var likes: Int = 0
+    var replies: [Reply] = []
+}
+
+struct Reply: Identifiable {
+    var id: UUID = UUID()
+    var message: String?
+    var image: UIImage? = nil
+    var likes: Int = 0
 }
