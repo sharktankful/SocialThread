@@ -38,6 +38,7 @@ struct PostView: View {
                     } label: {
                         HStack {
                             Text(post.message ?? "")
+                                .multilineTextAlignment(.leading)
                             Spacer()
                         }
                         
@@ -72,6 +73,6 @@ struct PostView: View {
 }
 
 #Preview {
-    PostView(post: .constant(Post(id: UUID(), message: "Testing", image: nil, likes: 0)))
+    PostView(post: .constant(Post(id: UUID(), message: "Doing a test to see how it goes", image: nil, likes: 0)))
         .environmentObject(ProfileModel())
 }
