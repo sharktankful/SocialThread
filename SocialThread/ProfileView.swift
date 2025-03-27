@@ -71,7 +71,7 @@ struct ProfileView: View {
                         PostListView()
                     }
                     else {
-                        //ReplyListView()
+                        ProfileRepliesView()
                     }
                 }
                 .padding(.top, 15)

@@ -14,4 +14,5 @@ struct User {
     var avatarImage: UIImage? = nil
     var Description: String?
     var posts: [Post] = []
+    var replies: [Reply] = []
 }

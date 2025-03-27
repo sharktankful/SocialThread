@@ -12,7 +12,6 @@ struct ReplyListView: View {
     
     var body: some View {
         // SHOWS LISTS OF REPLIES
-        
         VStack(spacing: 20) {
             // ACTUAL POST REPLIES LIST
             ForEach(post.replies) { reply in

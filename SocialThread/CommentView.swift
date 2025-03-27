@@ -82,6 +82,8 @@ struct CommentView: View {
                         // CREATES POST WITH JUST MESSAGE IF NO IMAGE
                         let reply = Reply(message: message)
                         post.replies.append(reply)
+                        // ADDS REPLY TO USERS REPLY LIST
+                        profileModel.user.replies.append(reply)
                         
                         // CLEARS CURRENT MESSAGE
                         message = ""
