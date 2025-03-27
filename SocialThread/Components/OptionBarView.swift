@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct PostOptionView: View {
+struct OptionBarView: View {
     @Binding var post: Post
     
     var body: some View {
         // POST OPTION BAR
-        HStack {
+        HStack(spacing: 30) {
             // LIKES
-            HStack {
+            HStack(spacing: 3) {
                 Image(systemName: post.heartTap == false ? "heart" : "heart.fill")
                     .foregroundStyle(post.heartTap == false ? .gray : .red)
                     .onTapGesture {
@@ -28,12 +28,23 @@ struct PostOptionView: View {
                         }
                     }
                 Text(String(post.likes))
-                    .foregroundStyle(.gray)
+                    
+            }
+            
+            // MESSAGES
+            HStack(spacing: 3) {
+                HStack {
+                    Image(systemName: "message")
+                    
+                    Text(String(post.replies.count))
+                }
+                    
             }
         }
+        .foregroundStyle(.gray)
     }
 }
 
 #Preview {
-    PostOptionView(post: .constant(Post()))
+    OptionBarView(post: .constant(Post()))
 }

@@ -56,7 +56,7 @@ struct PostView: View {
                     }
                     
                     // POST STATS
-                    PostOptionView(post: $post)
+                    OptionBarView(post: $post)
                     .padding(.top, 10)
                     
                     

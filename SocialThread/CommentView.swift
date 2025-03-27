@@ -53,7 +53,7 @@ struct CommentView: View {
                             
                             
                             // POST OPTION BAR
-                            PostOptionView(post: $post)
+                            OptionBarView(post: $post)
                             
                             // COMMENT SECTION
                             Text("Replies")
@@ -82,7 +82,6 @@ struct CommentView: View {
                         // CREATES POST WITH JUST MESSAGE IF NO IMAGE
                         let reply = Reply(message: message)
                         post.replies.append(reply)
-                        
                         
                         // CLEARS CURRENT MESSAGE
                         message = ""

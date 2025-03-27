@@ -25,7 +25,7 @@ struct HomeView: View {
                 
                 // PROFILE HEADER
                 HStack {
-                    Text("Social App 😉")
+                    Text("Social Threads 😉")
                         .font(.title)
                         .bold()
                         .foregroundStyle(.white)
