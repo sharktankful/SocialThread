@@ -53,7 +53,7 @@ struct CommentView: View {
                             
                             
                             // POST OPTION BAR
-                            PostOptionView(post: post)
+                            PostOptionView(post: $post)
                             
                             // COMMENT SECTION
                             Text("Replies")

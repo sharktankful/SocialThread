@@ -11,7 +11,6 @@ struct PostView: View {
     @EnvironmentObject private var profileModel: ProfileModel
     
     @Binding var post: Post
-    @State var heartTap: Bool = false
     
     var body: some View {
         ZStack {
@@ -57,7 +56,7 @@ struct PostView: View {
                     }
                     
                     // POST STATS
-                    PostOptionView(post: post)
+                    PostOptionView(post: $post)
                     .padding(.top, 10)
                     
                     

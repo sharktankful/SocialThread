@@ -13,6 +13,7 @@ struct Post: Identifiable {
     var message: String?
     var image: UIImage? = nil
     var likes: Int = 0
+    var heartTap: Bool = false
     var replies: [Reply] = []
 }
 

@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct PostOptionView: View {
-    @State var post: Post
-    @State var heartTap: Bool = false
+    @Binding var post: Post
     
     var body: some View {
         // POST OPTION BAR
         HStack {
             // LIKES
             HStack {
-                Image(systemName: heartTap == false ? "heart" : "heart.fill")
-                    .foregroundStyle(heartTap == false ? .gray : .red)
+                Image(systemName: post.heartTap == false ? "heart" : "heart.fill")
+                    .foregroundStyle(post.heartTap == false ? .gray : .red)
                     .onTapGesture {
-                        heartTap.toggle()
+                        post.heartTap.toggle()
 
-                        if heartTap == true {
+                        if post.heartTap == true {
                             post.likes += 1
                         }
                         else {
@@ -36,5 +35,5 @@ struct PostOptionView: View {
 }
 
 #Preview {
-    PostOptionView(post: Post())
+    PostOptionView(post: .constant(Post()))
 }
