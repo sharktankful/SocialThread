@@ -11,6 +11,7 @@ import PhotosUI
 struct ProfileView: View {
     @EnvironmentObject private var profileModel: ProfileModel
     @State private var selectedView: Int = 0
+    @State private var isFullScreenVisible: Bool = false
 
     var body: some View {
         ZStack {
@@ -46,16 +47,17 @@ struct ProfileView: View {
                     .foregroundStyle(.white)
                 
                 // EDIT BUTTON
-                Button {
+                Button("Edit Profile") {
                     // causes fullscreen to appear...
-                } label: {
-                    Text("Edit profile")
-                        .padding(.horizontal, 70)
-                        .padding(.vertical, 10)
-                        .background(Color.white)
-                        .foregroundStyle(.black)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    isFullScreenVisible = true
                 }
+                .padding(.horizontal, 70)
+                .padding(.vertical, 10)
+                .background(Color.white)
+                .foregroundStyle(.black)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                
                 
                 VStack(spacing: 20) {
                     //PICKER TO DECIDE THE VIEW TO SHOW
@@ -81,6 +83,9 @@ struct ProfileView: View {
                 Spacer()
             }
             .padding()
+            .fullScreenCover(isPresented: $isFullScreenVisible) {
+                EditProfileView(isFullScreenVisible: $isFullScreenVisible)
+            }
         }
             
             
