@@ -15,6 +15,8 @@ struct CommentView: View {
     @State var heartTap: Bool = false
     @State var message: String = ""
     
+    @State var isFullScreen: Bool = false
+    
     
     var body: some View {
         ZStack {
@@ -48,7 +50,11 @@ struct CommentView: View {
                                         .scaledToFit()
                                         .clipShape(RoundedRectangle(cornerRadius: 7))
                                         .frame(maxHeight: 300)
+                                        .onTapGesture {
+                                            isFullScreen = true
+                                        }
                                 }
+                                
                             }
                             
                             
@@ -91,6 +97,9 @@ struct CommentView: View {
             }
             .padding()
             
+        }
+        .fullScreenCover(isPresented: $isFullScreen) {
+            ImageView(image: post.image, isFullScreen: $isFullScreen)
         }
     }
 }

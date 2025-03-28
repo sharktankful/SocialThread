@@ -12,6 +12,8 @@ struct PostView: View {
     
     @Binding var post: Post
     
+    @State var isFullScreen: Bool = false
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
@@ -53,6 +55,9 @@ struct PostView: View {
                             .scaledToFit()
                             .clipShape(RoundedRectangle(cornerRadius: 7))
                             .frame(maxHeight: 300)
+                            .onTapGesture {
+                                isFullScreen = true
+                            }
                     }
                     
                     // POST STATS
@@ -66,6 +71,9 @@ struct PostView: View {
             .foregroundStyle(.white)
             .padding()
             
+        }
+        .fullScreenCover(isPresented: $isFullScreen) {
+            ImageView(image: post.image, isFullScreen: $isFullScreen)
         }
         
     }
