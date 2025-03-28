@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct CommentView: View {
+struct RepliesView: View {
     @EnvironmentObject private var profileModel: ProfileModel
     
     @Binding var post: Post
@@ -105,6 +105,6 @@ struct CommentView: View {
 }
 
 #Preview {
-    CommentView(post: .constant(Post(id: UUID(), message: "Hello Comments")))
+    RepliesView(post: .constant(Post(id: UUID(), message: "Hello Comments")))
         .environmentObject(ProfileModel())
 }

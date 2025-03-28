@@ -33,9 +33,9 @@ struct PostView: View {
                     Text(profileModel.user.name)
                         .bold()
                     
-                    // DRILLS INTO COMMENT VIEW
+                    // DRILLS INTO REPLIES VIEW
                     NavigationLink {
-                        CommentView(post: $post)
+                        RepliesView(post: $post)
                     } label: {
                         HStack {
                             Text(post.message ?? "")
