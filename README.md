@@ -17,8 +17,9 @@ A modern, lightweight social media app inspired by Instagram Threads — but it�
 ## 📱 App Screenshots  
 
 <p align="center">
-    <img src="https://github.com/sharktankful/SocialThread/blob/main/SocialThread/Assets.xcassets/App%20Images/Image_1.imageset/Screenshot%202025-03-24%20at%2012.00.37%E2%80%AFPM.png" width="300" />
-    <img src="https://github.com/sharktankful/SocialThread/blob/main/SocialThread/Assets.xcassets/App%20Images/Image_2.imageset/Screenshot%202025-03-24%20at%2011.57.55%E2%80%AFAM.png" width="300" />
+    <img src="https://github.com/sharktankful/SocialThread/blob/main/SocialThread/Assets.xcassets/App%20Images/image_1.imageset/image_1.png" width="300" />
+    <img src="https://github.com/sharktankful/SocialThread/blob/main/SocialThread/Assets.xcassets/App%20Images/image_2.imageset/image_2.png" width="300" />
+    <img src="https://github.com/sharktankful/SocialThread/blob/main/SocialThread/Assets.xcassets/App%20Images/image_3.imageset/image_3.png" width="300" />
 </p>
 
 ---
