@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		D4BDF0AB2DA1D6D4008E099B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41CFEE02D8B1D8F006F8E52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D41CFEE72D8B1D8F006F8E52;
+			remoteInfo = SocialThread;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D41CFEE82D8B1D8F006F8E52 /* SocialThread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialThread.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BDF0A72DA1D6D4008E099B /* SocialThreadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialThreadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = SocialThread;
 			sourceTree = "<group>";
 		};
+		D4BDF0A82DA1D6D4008E099B /* SocialThreadTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SocialThreadTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D41CFEE52D8B1D8F006F8E52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BDF0A42DA1D6D4008E099B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				D41CFEEA2D8B1D8F006F8E52 /* SocialThread */,
+				D4BDF0A82DA1D6D4008E099B /* SocialThreadTests */,
 				D41CFEE92D8B1D8F006F8E52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				D41CFEE82D8B1D8F006F8E52 /* SocialThread.app */,
+				D4BDF0A72DA1D6D4008E099B /* SocialThreadTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = D41CFEE82D8B1D8F006F8E52 /* SocialThread.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D4BDF0A62DA1D6D4008E099B /* SocialThreadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4BDF0AF2DA1D6D4008E099B /* Build configuration list for PBXNativeTarget "SocialThreadTests" */;
+			buildPhases = (
+				D4BDF0A32DA1D6D4008E099B /* Sources */,
+				D4BDF0A42DA1D6D4008E099B /* Frameworks */,
+				D4BDF0A52DA1D6D4008E099B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4BDF0AC2DA1D6D4008E099B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D4BDF0A82DA1D6D4008E099B /* SocialThreadTests */,
+			);
+			name = SocialThreadTests;
+			packageProductDependencies = (
+			);
+			productName = SocialThreadTests;
+			productReference = D4BDF0A72DA1D6D4008E099B /* SocialThreadTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -77,11 +125,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					D41CFEE72D8B1D8F006F8E52 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					D4BDF0A62DA1D6D4008E099B = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = D41CFEE72D8B1D8F006F8E52;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				D41CFEE72D8B1D8F006F8E52 /* SocialThread */,
+				D4BDF0A62DA1D6D4008E099B /* SocialThreadTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D41CFEE62D8B1D8F006F8E52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BDF0A52DA1D6D4008E099B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4BDF0A32DA1D6D4008E099B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4BDF0AC2DA1D6D4008E099B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D41CFEE72D8B1D8F006F8E52 /* SocialThread */;
+			targetProxy = D4BDF0AB2DA1D6D4008E099B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D41CFEF42D8B1D90006F8E52 /* Debug */ = {
@@ -302,6 +377,44 @@
 			};
 			name = Release;
 		};
+		D4BDF0AD2DA1D6D4008E099B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z285BVHVA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharktank.SocialThreadTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SocialThread.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SocialThread";
+			};
+			name = Debug;
+		};
+		D4BDF0AE2DA1D6D4008E099B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z285BVHVA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharktank.SocialThreadTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SocialThread.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SocialThread";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,6 +432,15 @@
 			buildConfigurations = (
 				D41CFEF72D8B1D90006F8E52 /* Debug */,
 				D41CFEF82D8B1D90006F8E52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4BDF0AF2DA1D6D4008E099B /* Build configuration list for PBXNativeTarget "SocialThreadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BDF0AD2DA1D6D4008E099B /* Debug */,
+				D4BDF0AE2DA1D6D4008E099B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
