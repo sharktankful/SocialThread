@@ -43,7 +43,7 @@ struct ProfileView: View {
                 }
                 
                 // USER PROFILE DESCRIPTION
-                Text(profileModel.user.Description ?? "")
+                Text(profileModel.user.description ?? "")
                     .foregroundStyle(.white)
                 
                 // EDIT BUTTON

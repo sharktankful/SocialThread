@@ -10,7 +10,7 @@ import SwiftUI
 import PhotosUI
 
 class ProfileModel: ObservableObject {
-    @Published var user: User = User(name: "Alec Smith", Description: "Trying my best to live life the way god wants me to live it. Not perfect but I'm getting there (I'm trying haha..")
+    @Published var user: User = User(name: "Alec Smith", description: "Trying my best to live life the way god wants me to live it. Not perfect but I'm getting there (I'm trying haha..")
     @Published var photoPickerItem: PhotosPickerItem?
     
     @Published var message: String = ""

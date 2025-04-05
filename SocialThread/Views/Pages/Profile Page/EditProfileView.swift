@@ -16,8 +16,8 @@ struct EditProfileView: View {
     
     var body: some View {
         let descriptionBinding = Binding(
-            get: { profileModel.user.Description ?? "" },
-            set: { profileModel.user.Description = $0 })
+            get: { profileModel.user.description ?? "" },
+            set: { profileModel.user.description = $0 })
         
         ZStack {
             LinearGradient(colors: [Color.deepPurple, Color.blushPink], startPoint: .top, endPoint: .bottom)
