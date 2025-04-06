@@ -69,7 +69,7 @@ class ProfileModel: ObservableObject {
                 do {
                     if let data = try await selectedPhoto.loadTransferable(type: Data.self) {
                         DispatchQueue.main.async {
-                            self.postImage = UIImage(data: data)
+                            self.handleImageData(data)
                         }
                         
                     }
@@ -79,12 +79,12 @@ class ProfileModel: ObservableObject {
                 }
             }
             
-            // SETS SELECTED PHOTO BACK TO NIL
-            DispatchQueue.main.async {
-                self.postImagePicker = nil
-            }
-            
         }
+    }
+    
+    func handleImageData(_ data: Data) {
+        self.postImage = UIImage(data: data)
+        self.postImagePicker = nil
     }
     
 }

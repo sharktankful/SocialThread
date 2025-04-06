@@ -14,19 +14,23 @@ final class PostCreationTest: XCTestCase {
     
     func testSuccessfulPostCreation() {
         // 1. ARRANGE - Setup Variables
-        let message = "This is a test message"
-        let image = UIImage()
-        let post = Post(message: message, image: image)
+        let profileModel = ProfileModel()
+        profileModel.message = "This is a test message"
+        profileModel.postImage = UIImage()
+        
         
         // 2. ACT - What are the variables going to do?
-        user.posts.append(post)
+        profileModel.postCreation()
+        
         
         // 3. ASSERT - What does the end result need to be?
-        XCTAssertEqual(user.posts.count, 1) // Checks if post was added
-        XCTAssertEqual(user.posts.first?.message, message) // Checks Message was added
-        XCTAssertEqual(user.posts.first?.image, image) // Checks image was added
-        XCTAssertEqual(user.posts.first?.likes, 0) // Checks like count is 0
+        XCTAssertEqual(profileModel.user.posts.count, 1)
+        XCTAssertEqual(profileModel.user.posts.first?.message, "This is a test message")
+        XCTAssertNotNil(profileModel.user.posts.first?.image)
+        XCTAssertEqual(profileModel.message, "")
+        XCTAssertEqual(profileModel.postImage, nil)
     }
+    
     
     func testPostCreationIsNil() {
         // 1. ARRANGE
@@ -42,6 +46,17 @@ final class PostCreationTest: XCTestCase {
         XCTAssertNil(storedPost?.message)
         XCTAssertNil(storedPost?.image)
         
+    }
+    
+    func testPostImageUpload() {
+        let profileModel = ProfileModel()
+        let sampleImage = UIImage(systemName: "photo")! // Make a UI Photo
+        let imageData = sampleImage.pngData()! // Convert image to raw data
+        
+        profileModel.handleImageData(imageData) // Convert raw data to UIImage and set it to my posts picture
+        
+        XCTAssertNotNil(profileModel.postImage) // Checks if image is in post
+        XCTAssertNil(profileModel.postImagePicker) // Checks if post photo picker is nil
     }
 
 }
