@@ -36,6 +36,12 @@ I chose this architecture to **keep data logic separate from the views**, making
 
 ---
 
+## ✅ Unit Testing
+
+This project includes unit tests using XCTest to ensure core features work as expected. Key components like post-creation, data handling, and view models are tested for reliability and correctness.
+
+--
+
 ## 👨‍💻 Authors  
 
 - [@AlecSmith](https://github.com/sharktankful)  
